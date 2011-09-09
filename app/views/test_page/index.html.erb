@@ -1,0 +1,22 @@
+<% title 'UniSender test app'%>
+<h2>Mail lists</h2>
+<ul>
+  <% @client.get_lists['result'].each do |item|%>
+    <li><%= item['title']%> with id <%= item['id']%></li>
+  <%end%>
+</ul>
+
+<h2>Contacts</h2>
+<% result = @client.exportContacts['result']%>
+<table>
+
+  <% result['field_names'].each_with_index do |key, index|%>
+    <tr>
+      <td class='key'><%= key%></td>
+      <% result['data'].map{|p| p[index]}.each do |value|%>
+        <td><%= value %></td>
+      <%end%>
+    </tr>
+  <%end%>
+
+</table>
